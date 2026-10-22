@@ -1,0 +1,391 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>הנזק של אי־המוכנות</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="אומדן סדר גודל של הנזק השנתי מאי־מוכנות ארגונית במדינות המערב, לפי קטגוריה, אזור ומגזר">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: "ספר מבצעים" — אינדקס קבוע בצד ימין, גיליון עבודה במרכז; כל שלב הוא דף בגיליון */
+:root{
+  --bg:#f3f5f7; --sheet:#ffffff; --ink:#15202b; --muted:#5b6777; --line:#d8dee6; --soft:#eaeef2;
+  --accent:#0b6a66; --accent-soft:#e1f0ee; --accent-ink:#ffffff;
+  --ok:#2f7d3b; --warn:#b07a00; --orange:#c25a12; --bad:#b3261e;
+  --f-display:"Frank Ruhl Libre","David","Times New Roman",serif;
+  --f-body:"IBM Plex Sans Hebrew","Assistant","Arial",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Consolas",monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --sheet:#151d25; --ink:#e7edf3; --muted:#9aa7b6; --line:#2a3642; --soft:#1c2630;
+  --accent:#4fbcb3; --accent-soft:#163533; --accent-ink:#06201e;
+  --ok:#6cc27a; --warn:#e2b23c; --orange:#f08a4b; --bad:#ef6b62; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --sheet:#151d25; --ink:#e7edf3; --muted:#9aa7b6; --line:#2a3642; --soft:#1c2630;
+  --accent:#4fbcb3; --accent-soft:#163533; --accent-ink:#06201e;
+  --ok:#6cc27a; --warn:#e2b23c; --orange:#f08a4b; --bad:#ef6b62; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{direction:rtl;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* index */
+nav.index{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px;max-height:calc(100vh - 40px);overflow:auto}
+@media (max-width:860px){nav.index{position:static;max-height:none}}
+.brand{font-family:var(--f-display);font-weight:900;font-size:1.35rem;line-height:1.2;margin:0 0 4px}
+.brand-sub{color:var(--muted);font-size:.82rem;margin:0 0 14px}
+.btn.navtoggle{display:none;width:100%;margin-top:4px;text-align:center}
+main:focus{outline:none}
+@media (max-width:860px){.btn.navtoggle{display:block}.navlist.closed{display:none}}
+.navlist{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.navlist a{display:flex;gap:8px;align-items:baseline;padding:6px 8px;border-radius:7px;color:var(--ink);text-decoration:none;font-size:.93rem}
+.navlist a:hover{background:var(--soft)}
+.navlist a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+.navlist a[aria-current="page"] .code{color:inherit;opacity:.85}
+.navgroup{margin-top:10px;font-size:.72rem;letter-spacing:.06em;color:var(--muted);padding:0 8px;font-weight:600}
+.navlist .sub a{padding-right:22px;font-size:.88rem}
+.code{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);min-width:1.6em}
+
+/* sheet */
+main{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3.5vw,40px);min-width:0}
+.eyebrow{font-size:.78rem;letter-spacing:.07em;color:var(--accent);font-weight:700;margin:0 0 6px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:900}
+h2{font-size:1.45rem;font-weight:700;margin-top:30px;margin-bottom:10px}
+h3{font-size:1.12rem;font-weight:700;margin-bottom:6px}
+.lead{font-size:1.12rem;color:var(--ink);max-width:62ch;margin:12px 0 0}
+p{max-width:68ch;margin:8px 0}
+.muted{color:var(--muted)}
+ul.clean{margin:6px 0;padding-right:20px}
+ul.clean li{margin:4px 0;max-width:66ch}
+
+.question{margin-top:18px;border-right:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 8px 8px 0;font-family:var(--f-display);font-size:1.25rem;font-weight:700}
+.en{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);direction:ltr;unicode-bidi:isolate;margin-inline-start:8px}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid2,.grid4{grid-template-columns:minmax(0,1fr)}}
+
+.panel{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.panel h3{display:flex;gap:8px;align-items:center}
+.who{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.who.ai{border-color:var(--accent);color:var(--accent)}
+
+.chapter{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:var(--r);padding:14px;text-decoration:none;color:var(--ink);min-width:0}
+.chapter:hover,.chapter:focus-visible{border-color:var(--accent)}
+.chapter .ltr{font-family:var(--f-display);font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.chapter .q{font-weight:600}
+.chapter .stages{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.8rem;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--muted);text-decoration:none;background:var(--sheet)}
+a.chip:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ribbon of 12 */
+.ribbon{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 10px;margin-top:10px}
+.ribbon a{flex:0 0 auto;display:flex;flex-direction:column;gap:2px;min-width:92px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-decoration:none;color:var(--ink);background:var(--sheet)}
+.ribbon a:hover{border-color:var(--accent)}
+.ribbon .n{font-family:var(--f-mono);font-size:.72rem;color:var(--accent)}
+.ribbon .t{font-size:.86rem;font-weight:600;line-height:1.3}
+.ribbon .sep{align-self:center;color:var(--muted);flex:0 0 auto}
+
+.loops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+@media (max-width:700px){.loops{grid-template-columns:minmax(0,1fr)}}
+.loop .flow{font-size:.86rem;color:var(--muted);margin-top:6px}
+
+.example{margin-top:24px;border:1px dashed var(--accent);border-radius:var(--r);padding:14px 18px;background:color-mix(in srgb,var(--accent-soft) 45%,var(--sheet))}
+.example .tag{font-size:.74rem;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.tablewrap{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:right;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:.82rem}
+td.num{font-variant-numeric:tabular-nums}
+.gap{color:var(--bad);font-weight:700}
+
+.status{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.s-ok{background:var(--ok)}.s-warn{background:var(--warn)}.s-or{background:var(--orange)}.s-bad{background:var(--bad)}
+
+.layers{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.layer{font-size:.82rem;background:var(--soft);border-radius:6px;padding:3px 9px}
+
+.term{font:inherit;color:inherit;background:none;border:0;padding:0;border-bottom:1.5px dotted var(--accent);cursor:help}
+.term:focus-visible,.chapter:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#pop{position:fixed;z-index:20;max-width:320px;background:var(--ink);color:var(--sheet);padding:10px 12px;border-radius:8px;font-size:.88rem;line-height:1.5;box-shadow:0 6px 24px rgb(0 0 0 / .25)}
+#pop b{display:block;margin-bottom:2px}
+
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:34px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.btn{display:inline-flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:8px;padding:8px 14px;color:var(--ink);text-decoration:none;background:var(--sheet);font:inherit;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn small{color:var(--muted);font-size:.75rem}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.rule .k{font-family:var(--f-display);font-weight:900;color:var(--accent);font-size:1.3rem;min-width:1.4em}
+dl.gloss{display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);gap:0;margin:10px 0}
+dl.gloss dt,dl.gloss dd{padding:9px 0;border-bottom:1px solid var(--line);margin:0}
+dl.gloss dt{font-weight:700;padding-left:14px}
+@media (max-width:560px){dl.gloss{grid-template-columns:minmax(0,1fr)}dl.gloss dt{border-bottom:0;padding-bottom:0}}
+footer{max-width:1180px;margin:16px auto 0;color:var(--muted);font-size:.8rem;text-align:center}
+@media (prefers-reduced-motion:no-preference){main{animation:in .25s ease-out}@keyframes in{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:none}}}
+</style>
+<style>
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+@media (max-width:700px){.kpis{grid-template-columns:minmax(0,1fr)}}
+.kpi{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.kpi.main{border-color:var(--accent);background:color-mix(in srgb,var(--accent-soft) 50%,var(--sheet))}
+.kpi .k{font-size:.82rem;font-weight:700;color:var(--muted)}
+.kpi .v{font-family:var(--f-display);font-size:1.55rem;font-weight:900;line-height:1.2;margin-top:4px}
+.kpi p{margin:6px 0 0;font-size:.9rem}
+.big{font-family:var(--f-display);font-size:2.1rem;font-weight:900;color:var(--accent);line-height:1.15}
+.unit{font-size:1rem;color:var(--muted);font-weight:600;margin-inline-start:6px}
+.note{border-right:4px solid var(--warn);background:color-mix(in srgb,var(--warn) 8%,var(--sheet));padding:10px 16px;border-radius:0 8px 8px 0;margin-top:14px}
+.note.bad{border-right-color:var(--bad);background:color-mix(in srgb,var(--bad) 7%,var(--sheet))}
+.flag{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap;vertical-align:2px}
+.flag.src{color:var(--ok)} .flag.est{color:var(--warn)} .flag.unv{color:var(--bad)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+@media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink)}
+a.card:hover{border-color:var(--accent)}
+.card h3{margin:0}
+.card .r{font-family:var(--f-display);font-weight:900;font-size:1.25rem;color:var(--accent)}
+.card p{margin:0;font-size:.92rem}
+.card ul{margin:0;padding-inline-start:18px;font-size:.92rem}
+/* range chart */
+.rc{margin-top:12px}
+.rc .row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.rc a.row:hover .nm{color:var(--accent)}
+.rc .nm{font-size:.9rem;font-weight:600}
+.rc .ax{position:relative;height:22px;direction:ltr}
+.rc .band{position:absolute;top:4px;height:14px;border-radius:4px;background:var(--accent)}
+.rc .band.add{background:color-mix(in srgb,var(--accent) 35%,transparent);outline:1.5px dashed var(--accent);outline-offset:-1.5px}
+.rc .band.fuzzy{background:repeating-linear-gradient(135deg,var(--accent) 0 5px,color-mix(in srgb,var(--accent) 45%,var(--sheet)) 5px 9px)}
+.rc .ticks{display:grid;grid-template-columns:170px minmax(0,1fr);gap:12px;margin-top:4px}
+.rc .tk{position:relative;height:18px;direction:ltr;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.rc .tk span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.rc .grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+@media (max-width:560px){.rc .row,.rc .ticks{grid-template-columns:minmax(0,1fr);gap:2px}.rc .ticks>span:first-child{display:none}}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem;color:var(--muted);margin:10px 0 0}
+.legend i{display:inline-block;width:18px;height:12px;border-radius:3px;margin-inline-end:6px;vertical-align:-1px}
+.ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--soft)}
+.ctl label{font-size:.88rem;font-weight:600}
+.ctl input[type=range]{width:170px;accent-color:var(--accent)}
+.ctl output{font-family:var(--f-mono);font-size:.85rem}
+#tip{position:fixed;z-index:30;pointer-events:none;background:var(--sheet);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.82rem;box-shadow:0 6px 20px rgba(0,0,0,.18);max-width:260px}
+#tip b{display:block;margin-bottom:2px}
+.ex{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ex span{font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:3px 10px;background:var(--soft)}
+.sum li{margin:8px 0}
+</style>
+
+<div class="wrap">
+  <nav class="index" aria-label="ניווט בדף">
+    <p class="brand">הנזק של אי־המוכנות</p>
+    <p class="brand-sub">אומדן סדר גודל לפי קטגוריה, אזור ומגזר</p>
+    <button class="btn navtoggle" id="navtoggle" type="button" aria-expanded="false" aria-controls="navlist">הצג את תוכן העניינים</button>
+    <ul class="navlist closed" id="navlist"></ul>
+  </nav>
+  <main id="view" tabindex="-1"></main>
+</div>
+<footer>אומדן סדר גודל. הנתונים מתייחסים לאוכלוסיות ולשיטות מדידה שונות, וחלקם חופפים.</footer>
+<div id="pop" hidden role="tooltip"></div>
+<div id="tip" hidden></div>
+
+<script>
+const G={
+ opr:["מוכנות תפעולית (Operational Readiness)","היכולת של ארגון, מערכת או פרויקט לפעול כנדרש מהיום הראשון: אנשים, תהליכים, מערכות וראיות לכך שהם מוכנים."],
+ chg:["מוכנות לשינוי (Change Readiness)","המידה שבה הארגון ואנשיו מוכנים לאמץ שינוי: הבנה, יכולת, משאבים ומחויבות."],
+ mc:["בהירות משימה (Mission Clarity)","הגדרה ברורה ומשותפת של המשימה, היעדים והתנאים להצלחה."],
+ ps:["ביטחון פסיכולוגי","אמונה משותפת בצוות שמותר לשאול, לטעות ולהתנגד בלי להיענש. בלעדיו, התרעות מוקדמות לא עולות למעלה."],
+ opt:["הטיית אופטימיות (Optimism Bias)","הנטייה להעריך בחסר עלויות, זמנים וסיכונים, ובחסר את הסבירות לכשל. מקור מרכזי לחריגות במגה־פרויקטים."],
+ down:["השבתה לא מתוכננת (Downtime)","פרק זמן שבו מערכת, מפעל או שירות אינם פועלים בלי שתוכנן לכך."],
+ dx:["טרנספורמציה דיגיטלית","תוכנית רחבה להחלפת תהליכים ומערכות בארגון באמצעות טכנולוגיה דיגיטלית."],
+ mega:["מגה־פרויקט","פרויקט של מיליארד דולר ומעלה, בדרך כלל בתשתיות, אנרגיה, תחבורה או ביטחון."],
+ chaos:["דוח CHAOS","סדרת סקרים של Standish Group על שיעורי ההצלחה והכישלון של פרויקטי תוכנה."],
+ cisq:["CISQ","Consortium for Information & Software Quality. מפרסם אומדנים של עלות איכות תוכנה ירודה בארה\"ב."],
+};
+const T=(k,l)=>`<button type="button" class="term" data-k="${k}">${l||G[k][0]}</button>`;
+const F={src:'<span class="flag src">נשען על מקור</span>',est:'<span class="flag est">אומדן מצוטט</span>',unv:'<span class="flag unv">לא מאומת</span>'};
+
+/* קטגוריות: lo/hi במיליארדי $ לשנה. fuzzy = טווח מילולי ("עשרות", "מאות") */
+const CAT=[
+ {id:'it',n:'כישלונות תוכנה ו־IT',sub:'תפעול ופיתוח · ארה"ב',r:'1.8–2.1',u:'טריליון $ בשנה',lo:1800,hi:2100,fz:0,f:'src',
+  note:`לפי ${T('cisq','CISQ')} (2022): כ־1.81 טריליון $ בכשלים תפעוליים, ועוד כ־0.26 טריליון $ בפיתוח.`,
+  more:['האומדן מתייחס לארה"ב בלבד.','זו הקטגוריה הגדולה ביותר, והסיבה העיקרית שארה"ב נושאת את החלק הארי של הנזק.']},
+ {id:'dx',n:'טרנספורמציה דיגיטלית',sub:'כישלון או אי־השגת יעדים',r:'עשרות עד מאות',u:'מיליארדי $ בשנה',lo:10,hi:999,fz:1,f:'est',
+  note:`לפי BCG ו־McKinsey, כ־70% מיוזמות ה${T('dx','טרנספורמציה הדיגיטלית')} אינן משיגות את מלוא יעדיהן.`,
+  more:['כישלון של תוכנית גדולה עשוי לעלות לחברה טיפוסית יותר מ־20 מיליון אירו בשנה.','שיעורי כישלון דומים מדווחים גם באירופה.']},
+ {id:'mega',n:'מגה־פרויקטים',sub:'תשתיות · אנרגיה · תחבורה',r:'מאות',u:'מיליארדי $ בשנה',lo:100,hi:999,fz:1,f:'est',
+  note:`חריגות תקציב ואובדן תועלת ב${T('mega','מגה־פרויקטים')}. 91.5% מהם חורגים מהתקציב או מלוח הזמנים (Flyvbjerg). לפי אומדן מצוטט, 98% חורגים ב־30% ומעלה.`,
+  more:[`הגורם המרכזי לפי הספרות: ${T('opt','הטיית אופטימיות')} בשלב התכנון.`]},
+ {id:'down',n:'השבתות לא מתוכננות',sub:'תעשייה · ייצור · אנרגיה',r:'1–1.5',u:'טריליון $ בשנה',lo:1000,hi:1500,fz:0,f:'src',
+  note:`אומדנים המיוחסים ל־Senseye ואחרים, עבור חברות התעשייה הגדולות בעולם. שעה של ${T('down','השבתה')} עשויה לעלות מיליוני דולרים.`,
+  more:['במפעלים גדולים: 1–2 מיליון $ ויותר לשעת השבתה.']},
+ {id:'silence',n:'תרבות שתיקה',sub:'פרודוקטיביות · סיכונים · תחלופת עובדים',r:'מאות',u:'מיליארדי $ בשנה',lo:100,hi:999,fz:1,f:'unv',
+  note:`זה אומדן סדר גודל שלא אומת. מחירה של היעדרות ${T('ps','ביטחון פסיכולוגי')} כולל התרעות מוקדמות שלא נאמרו, כשלים שמצטברים, ירידה במעורבות העובדים ועלויות תחלופה.`,
+  more:['הקטגוריה הקרובה ביותר לליבת המודל: התרעה שלא עלתה, הסתייגות שלא נאמרה.']},
+];
+const CX=Object.fromEntries(CAT.map(c=>[c.id,c]));
+
+const REG=[
+ {id:'us',n:'ארה"ב',r:'מאות מיליארדי $ בשנה',pts:['דומיננטית בנתוני IT ותוכנה: יותר מ־2 טריליון $ בשנה מכישלונות תוכנה.','מגה־פרויקטים ציבוריים: חריגות של עשרות עד מאות מיליארדים לאורך שנים.','השבתות והפרעה לעסקים: גבוהות מאוד בפיננסים, בבריאות ובתעשיית הרכב.'],ex:['Big Dig','Healthcare.gov','F-35']},
+ {id:'uk',n:'בריטניה',r:'עשרות מיליארדי ליש"ט בשנה',pts:['מגה־פרויקטים ממשלתיים: מיליארדים רבים בחריגות ובעיכובים. ב־HS2 לבדו החריגות הן עשרות מיליארדי ליש"ט.','רק 11% מהפרויקטים הגדולים דורגו "סביר שיצליח" (2024).','ייצור: עשרות מיליארדי ליש"ט בשנה מהשבתות.'],ex:['HS2','Crossrail','Hinkley Point C','Lower Thames Crossing']},
+ {id:'we',n:'אירופה המערבית',r:'עשרות עד מאות מיליארדי אירו בשנה',pts:['תשתית ואנרגיה: חריגות גבוהות, ובגרמניה יש דוגמאות של עשרות מיליארדי אירו.','ייצור ותעשייה: יותר מ־80 מיליארד ליש"ט/אירו מהשבתות בבריטניה ובאירופה יחד (2025).','טרנספורמציה דיגיטלית: שיעורי כישלון ותת־הישג דומים לאלה שבארה"ב.'],ex:['גרמניה','צרפת','הולנד']},
+ {id:'caau',n:'קנדה ואוסטרליה',r:'מיליארדים עד עשרות מיליארדי $ בשנה, לכל אחת',pts:['פרויקטי IT ממשלתיים גדולים. מערכת השכר Phoenix בקנדה עלתה מיליארדים.','עלויות בנייה ותשתיות גבוהות במיוחד.'],ex:['Phoenix payroll']},
+];
+const RX=Object.fromEntries(REG.map(r=>[r.id,r]));
+
+const SEC={
+ b:{n:'המגזר העסקי',items:[
+  ['IT, טכנולוגיה וטרנספורמציה דיגיטלית','הגבוה ביותר. חריגה ממוצעת של 45% בפרויקטים גדולים, ו־70% ויותר אינם משיגים את מלוא היעדים. תוכנית כושלת עולה לחברה גדולה עשרות מיליוני אירו או דולר בשנה.',['it','dx']],
+  ['ייצור, תעשייה כבדה ורכב','השבתה של 1–2 מיליון $ ויותר לשעה במפעלים גדולים. בסך הכול מאות מיליארדים בשנה.',['down']],
+  ['פיננסים וביטוח','עלויות ההשבתה והרגולציה גבוהות מאוד. כשלים במערכות קריטיות יקרים במיוחד.',['it','down']],
+  ['אנרגיה, נפט, גז וכרייה','חריגות במגה־פרויקטים, והשבתות יקרות.',['mega','down']],
+  ['קמעונאות ושירותים','אובדן מכירות מיידי בהשבתות, וכישלונות בפרויקטים דיגיטליים.',['down','dx']]]},
+ p:{n:'המגזר הציבורי והממשלתי',items:[
+  ['IT ממשלתי','חריגות גבוהות פי 3 בערך מאשר במגזר הפרטי. הדוגמאות הקלאסיות, כמו NHS IT בבריטניה, Healthcare.gov ו־Phoenix, עלו מיליארדים.',['it','dx']],
+  ['תשתיות ותחבורה','86%–98% מהפרויקטים חורגים. העלויות העודפות מגיעות לעשרות עד מאות מיליארדים לאורך שנים: HS2, Big Dig, שדות תעופה ועוד.',['mega']],
+  ['ביטחון והגנה','פרויקטי רכש גדולים, כמו F-35, עם חריגות עצומות, ועלויות של מוכנות מבצעית נמוכה.',['mega']],
+  ['בריאות ציבורית','השבתות יקרות מאוד, וכישלונות של מערכות מידע.',['down','it']],
+  ['ממשל כללי',`${T('opt','הטיית אופטימיות')} וחוסר מוכנות ארגונית מובילים לכשלים חוזרים.`,['silence','mega']]]},
+};
+
+let add=.35;
+const fmtB=x=>x>=1000?(x/1000).toFixed(x%1000?2:0).replace(/\.?0+$/,'')+'T':Math.round(x)+'B';
+function rangeChart(showAdd){
+ const lo=10,hi=3000,X=v=>Math.max(0,Math.min(100,(Math.log10(v)-Math.log10(lo))/(Math.log10(hi)-Math.log10(lo))*100));
+ const ticks=[10,30,100,300,1000,3000];
+ const grid=ticks.map(t=>`<span class="grid" style="left:${X(t)}%"></span>`).join('');
+ return `<div class="rc">${CAT.map(c=>{const a1=c.lo*.2,a2=c.hi*.5,aa1=c.lo*add,aa2=c.hi*add;
+  const tip=encodeURIComponent(`<b>${c.n}</b>אומדן: ${c.r} ${c.u}${showAdd?`<br>ניתן לטיפול (${Math.round(add*100)}%): ${fmtB(aa1)}–${fmtB(aa2)} $`:''}`);
+  return `<a class="row" href="#cat-${c.id}" data-tip="${tip}"><span class="nm">${c.n}</span><span class="ax">${grid}<span class="band${c.fz?' fuzzy':''}" style="left:${X(c.lo)}%;width:${Math.max(1,X(c.hi)-X(c.lo))}%"></span>${showAdd?`<span class="band add" style="top:7px;height:8px;left:${X(aa1)}%;width:${Math.max(1,X(aa2)-X(aa1))}%"></span>`:''}</span></a>`;}).join('')}
+ <div class="ticks"><span></span><span class="tk">${ticks.map(t=>`<span style="left:${X(t)}%">$${fmtB(t)}</span>`).join('')}</span></div>
+ <div class="legend"><span><i style="background:var(--accent)"></i>טווח מספרי</span><span><i style="background:repeating-linear-gradient(135deg,var(--accent) 0 5px,color-mix(in srgb,var(--accent) 45%,var(--sheet)) 5px 9px)"></i>טווח מילולי ("עשרות", "מאות")</span>${showAdd?`<span><i style="background:color-mix(in srgb,var(--accent) 35%,transparent);outline:1.5px dashed var(--accent);outline-offset:-1.5px"></i>החלק הניתן לטיפול</span>`:''}</div>
+ <p class="muted" style="font-size:.84rem;margin-top:6px">ציר לוגריתמי, במיליארדי דולר בשנה. כל רווח בין קווי הרשת הוא בערך פי 3.</p></div>`;}
+
+const V={};
+V.overview=()=>`<p class="eyebrow">אומדן סדר גודל</p><h1>הנזק של אי־המוכנות</h1>
+<p class="lead">הערכה של אובדן ההכנסות והנזקים הפוטנציאליים כשמודלים לשיפור המוכנות הארגונית המשימתית אינם מיושמים. האומדן מבוסס על אירועים מוכחים: עלויות של כישלונות פרויקטים, חריגות תקציב, כשלים תפעוליים, ועלות של תרבות שתיקה ופחד להתבטא.</p>
+<div class="kpis">
+ <div class="kpi main"><div class="k">ניתן לצמצום, במערב כולו</div><div class="v">מאות מיליארדים עד יותר מטריליון $</div><p>בשנה. זה החלק מהנזק שמתודולוגיות של מוכנות ומניעת מחדלים יכולות לצמצם.</p></div>
+ <div class="kpi"><div class="k">החלק "הניתן לטיפול"</div><div class="v">20%–50%</div><p>מהנזקים. הערכה שמרנית.</p></div>
+ <div class="kpi"><div class="k">מי נושא בעיקר הנזק</div><div class="v">ארה"ב</div><p>בעיקר בגלל IT. המגזרים הכבדים: IT ציבורי ופרטי, תשתיות, ייצור וביטחון.</p></div>
+</div>
+<h2>חמש קטגוריות הנזק</h2>
+${rangeChart(false)}
+<h2>מבנה הדף</h2>
+<div class="grid2">
+ <a class="chapter" href="#cats"><span class="ltr">1</span><span class="q">קטגוריות הנזק</span><span class="muted">חמישה סוגי כשל, האומדן לכל אחד והמקורות שלו.</span></a>
+ <a class="chapter" href="#regions"><span class="ltr">2</span><span class="q">לפי מדינות ואזורים</span><span class="muted">ארה"ב, בריטניה, אירופה המערבית, קנדה ואוסטרליה.</span></a>
+ <a class="chapter" href="#sectors"><span class="ltr">3</span><span class="q">לפי מגזרים</span><span class="muted">עסקי וציבורי, וכל אחד מהם בתתי־מגזרים.</span></a>
+ <a class="chapter" href="#summary"><span class="ltr">4</span><span class="q">סיכום מעשי</span><span class="muted">מה המספרים אומרים, ולמה הנזק אינו רק כספי.</span></a>
+</div>
+<div class="note"><b>חשוב לפני שקוראים.</b> האומדנים מתייחסים לאוכלוסיות ולשיטות מדידה שונות, וחלקם חופפים. אין לחבר אותם לאומדן נזק כולל. ראו "${TITLE.method}".</div>
+${pager('overview')}`;
+
+V.cats=()=>`<p class="eyebrow">חתך 1</p><h1>קטגוריות הנזק</h1>
+<p class="lead">אומדן שנתי של הנזק והאובדן הכלכלי מכשלים ארגוניים, טכנולוגיים ותפעוליים, במדינות המערב: ארה"ב, אירופה המערבית, קנדה ואוסטרליה.</p>
+<div class="ctl"><label for="aR">החלק הניתן לטיפול:</label><input id="aR" type="range" min="20" max="50" step="5" value="${Math.round(add*100)}"><output>${Math.round(add*100)}%</output><span class="muted" style="font-size:.84rem">טווח ההנחה: 20%–50%</span></div>
+${rangeChart(true)}
+<div class="tablewrap"><table><thead><tr><th>קטגוריה</th><th>אומדן שנתי</th><th>מעמד</th><th>הערות ומקורות</th></tr></thead><tbody>
+${CAT.map(c=>`<tr><td><a href="#cat-${c.id}"><b>${c.n}</b></a><br><span class="muted" style="font-size:.82rem">${c.sub}</span></td><td><b>${c.r}</b><br><span class="muted" style="font-size:.82rem">${c.u}</span></td><td>${F[c.f]}</td><td>${c.note}</td></tr>`).join('')}
+</tbody></table></div>
+<div class="note bad"><b>הערה מתודולוגית.</b> הנתונים בטבלה לא אומתו באופן עצמאי מול המקורות. האומדנים מתייחסים לאוכלוסיות ולשיטות מדידה שונות, וחלקם חופפים. אין לחבר אותם לאומדן נזק עולמי כולל. שיעורי כישלון אינם בהכרח שיעורי נזק כספי, והסכומים אינם מייצגים את החלק שניתן למנוע באמצעות MRFPS.</div>
+${pager('cats')}`;
+
+CAT.forEach((c,i)=>{V['cat-'+c.id]=()=>`<p class="eyebrow">קטגוריית נזק ${i+1} מתוך ${CAT.length}</p><h1>${c.n}</h1>
+<p class="muted" style="margin-top:-6px">${c.sub}</p>
+<p><span class="big">${c.r}</span><span class="unit">${c.u}</span> ${F[c.f]}</p>
+<h2>על מה זה נשען</h2><p>${c.note}</p>
+<ul>${c.more.map(m=>`<li>${m}</li>`).join('')}</ul>
+<h2>החלק הניתן לטיפול</h2>
+<p>לפי ההנחה ש־20%–50% מהנזק ניתנים לטיפול במתודולוגיות של מוכנות ומניעת מחדלים: ${c.fz?`בקטגוריה זו הטווח הוא מילולי ("${c.r}"), ולכן גם החלק הניתן לטיפול הוא סדר גודל בלבד: בין 20% ל־50% מ"${c.r} ${c.u}".`:`<b>${fmtB(c.lo*.2)}–${fmtB(c.hi*.5)} $ בשנה</b>.`}</p>
+<h2>איפה זה מופיע</h2><div class="ex">${Object.values(SEC).flatMap(s=>s.items.filter(it=>it[2].includes(c.id)).map(it=>`<a class="chip" href="#sec-${s===SEC.b?'b':'p'}">${it[0]}</a>`)).join('')}</div>
+${pagerList(CAT,'cat-',c.id,'cats','כל הקטגוריות')}`;});
+
+V.regions=()=>`<p class="eyebrow">חתך 2</p><h1>לפי מדינות ואזורים</h1>
+<p class="lead">לכל אזור: האומדן לחלק הניתן לצמצום באמצעות מוכנות ארגונית, ומקורות הנזק העיקריים.</p>
+<div class="cards">${REG.map(r=>`<a class="card" href="#r-${r.id}"><h3>${r.n}</h3><span class="r">${r.r}</span><p class="muted">ניתן לצמצום · ${r.pts.length} מקורות נזק עיקריים</p></a>`).join('')}</div>
+<p style="margin-top:16px">ארה"ב נושאת את החלק הארי, בעיקר בגלל IT. בבריטניה ובאירופה בולטים המגה־פרויקטים הממשלתיים וההשבתות בתעשייה.</p>
+${pager('regions')}`;
+REG.forEach(r=>{V['r-'+r.id]=()=>`<p class="eyebrow">מדינה או אזור</p><h1>${r.n}</h1>
+<p><span class="big" style="font-size:1.6rem">${r.r}</span></p><p class="muted" style="margin-top:-4px">האומדן לחלק הניתן לצמצום באמצעות מוכנות ארגונית.</p>
+<h2>מקורות הנזק העיקריים</h2><ul>${r.pts.map(p=>`<li>${p}</li>`).join('')}</ul>
+<h2>דוגמאות</h2><div class="ex">${r.ex.map(e=>`<span>${e}</span>`).join('')}</div>
+${pagerList(REG,'r-',r.id,'regions','כל האזורים')}`;});
+
+V.sectors=()=>`<p class="eyebrow">חתך 3</p><h1>לפי מגזרים</h1>
+<p class="lead">שני מגזרים, ובכל אחד חמישה תתי־מגזרים. ליד כל תת־מגזר מופיעות קטגוריות הנזק שרלוונטיות לו.</p>
+<div class="grid2">${['b','p'].map(k=>`<a class="chapter" href="#sec-${k}"><span class="ltr">${k==='b'?'ע':'צ'}</span><span class="q">${SEC[k].n}</span><span class="muted">${SEC[k].items.map(i=>i[0]).join(' · ')}</span></a>`).join('')}</div>
+<h2>המגזרים הכבדים</h2><p>IT ציבורי ופרטי, תשתיות, ייצור וביטחון. בהם מתרכז רוב הנזק.</p>
+${pager('sectors')}`;
+['b','p'].forEach(k=>{V['sec-'+k]=()=>`<p class="eyebrow">חתך 3 · מגזר</p><h1>${SEC[k].n}</h1>
+<div class="cards">${SEC[k].items.map(it=>`<div class="card"><h3>${it[0]}</h3><p>${it[1]}</p><div class="ex">${it[2].map(id=>`<a class="chip" href="#cat-${id}">${CX[id].n}</a>`).join('')}</div></div>`).join('')}</div>
+${k==='p'?`<div class="note"><b>במגזר הציבורי והביטחוני</b> הנזק אינו רק כספי. הוא כולל פגיעה באמון, במוכנות המבצעית ובתוצאות אסטרטגיות.</div>`:''}
+<div class="pager">${k==='b'?`<a class="btn" href="#sectors"><small>חזרה</small>→ כל המגזרים</a><a class="btn" href="#sec-p"><small>הבא</small>${SEC.p.n} ←</a>`:`<a class="btn" href="#sec-b"><small>הקודם</small>→ ${SEC.b.n}</a><a class="btn" href="#summary"><small>הבא</small>סיכום מעשי ←</a>`}</div>`;});
+
+V.summary=()=>`<p class="eyebrow">סיכום</p><h1>סיכום אומדן מעשי</h1>
+<ul class="sum">
+<li><b>במערב כולו:</b> מאות מיליארדים עד יותר מטריליון דולר בשנה של נזקים. חלק גדול מהם ניתן לצמצם משמעותית באמצעות שיפור המוכנות הארגונית המשימתית, ${T('mc','הגדרת משימה ברורה')}, תרבות של דיבור חופשי והתרעה מוקדמת, ומניעת מחדלים.</li>
+<li><b>ארה"ב</b> נושאת את החלק הארי, בעיקר בגלל IT.</li>
+<li><b>המגזרים הכבדים:</b> IT ציבורי ופרטי, תשתיות, ייצור וביטחון.</li>
+<li><b>במגזר הציבורי והביטחוני</b> הנזק אינו רק כספי. הוא כולל פגיעה באמון, במוכנות המבצעית ובתוצאות אסטרטגיות.</li></ul>
+<div class="question">רוב הנזק אינו מגיע מאירוע אחד. הוא מגיע מאלפי כשלים קטנים, שבכל אחד מהם הסימנים היו קיימים.</div>
+${pager('summary')}`;
+
+V.method=()=>`<p class="eyebrow">שקיפות</p><h1>הנחות וסייגים</h1>
+<div class="rule"><span class="k">1</span><div><b>האומדן מבוסס על אירועים מוכחים:</b> עלויות של כישלונות פרויקטים, חריגות תקציב, כשלים תפעוליים, ועלות של תרבות שתיקה ופחד להתבטא.</div></div>
+<div class="rule"><span class="k">2</span><div><b>חלק משמעותי, אך לא כולו,</b> מהעלות ניתן לצמצם באמצעות מוכנות ארגונית טובה יותר. הערכה שמרנית: 20%–50% מהנזקים ניתנים לטיפול במתודולוגיות של מוכנות ומניעת מחדלים.</div></div>
+<div class="rule"><span class="k">3</span><div><b>המקורות:</b> בעיקר מחקרים של Flyvbjerg (יותר מ־16,000 פרויקטים), ${T('chaos','Standish CHAOS')}, McKinsey, BCG, ${T('cisq','CISQ')}, Senseye ואחרים, עד 2025–2026.</div></div>
+<div class="rule"><span class="k">4</span><div><b>הסכומים</b> הם שנתיים בקירוב, בסדר גודל של דולרים אמריקאיים או שווה ערך.</div></div>
+<h2>מעמד הנתונים</h2>
+<p>${F.src} אומדן שמיוחס למקור מסוים. ${F.est} נתון שמצוטט בלי מקור ראשוני מוגדר. ${F.unv} אומדן סדר גודל שלא אומת.</p>
+<div class="note bad"><b>הערה מתודולוגית.</b> הנתונים לא אומתו באופן עצמאי. האומדנים מתייחסים לאוכלוסיות ולשיטות מדידה שונות, וחלקם חופפים. אין לחבר אותם לאומדן נזק עולמי כולל. שיעורי כישלון אינם בהכרח שיעורי נזק כספי, והסכומים אינם מייצגים את החלק שניתן למנוע באמצעות MRFPS.</div>
+<h2>קריאה נוספת</h2><ul>
+<li><a href="https://arxiv.org/pdf/1303.6571" target="_blank" rel="noopener">Flyvbjerg, Survival of the Unfittest</a>: חריגות עלות בפרויקטי תחבורה.</li>
+<li><a href="https://www.mckinsey.com/capabilities/rts/our-insights/delivering-large-scale-it-projects-on-time-on-budget-and-on-value" target="_blank" rel="noopener">McKinsey, Delivering large-scale IT projects</a>: פרויקטי IT גדולים, 45% חריגה בתקציב.</li></ul>
+${pager('method')}`;
+
+const ORDER=['overview','cats','regions','sectors','summary','method'];
+const TITLE={overview:'תמונת העל',cats:'קטגוריות הנזק',regions:'מדינות ואזורים',sectors:'מגזרים',summary:'סיכום מעשי',method:'הנחות וסייגים'};
+function pager(k){const i=ORDER.indexOf(k),p=ORDER[i-1],n=ORDER[i+1];
+ return `<div class="pager">${p?`<a class="btn" href="#${p}"><small>הקודם</small>→ ${TITLE[p]}</a>`:'<span></span>'}${n?`<a class="btn" href="#${n}"><small>הבא</small>${TITLE[n]} ←</a>`:`<a class="btn" href="#overview"><small>חזרה</small>תמונת העל ←</a>`}</div>`;}
+function pagerList(L,pre,id,up,upT){const i=L.findIndex(x=>x.id===id),p=L[i-1],n=L[i+1];
+ return `<div class="pager">${p?`<a class="btn" href="#${pre+p.id}"><small>הקודם</small>→ ${p.n}</a>`:`<a class="btn" href="#${up}"><small>חזרה</small>→ ${upT}</a>`}${n?`<a class="btn" href="#${pre+n.id}"><small>הבא</small>${n.n} ←</a>`:`<a class="btn" href="#${up}"><small>חזרה</small>${upT} ←</a>`}</div>`;}
+
+const nav=document.getElementById('navlist');
+nav.innerHTML=`<li><a href="#overview"><span class="code">◎</span>תמונת העל</a></li>
+<li class="navgroup">1 · קטגוריות</li><li><a href="#cats"><span class="code">▤</span>קטגוריות הנזק</a></li><li class="sub"><ul class="navlist">${CAT.map((c,i)=>`<li><a href="#cat-${c.id}"><span class="code">1.${i+1}</span>${c.n}</a></li>`).join('')}</ul></li>
+<li class="navgroup">2 · אזורים</li><li><a href="#regions"><span class="code">▦</span>מדינות ואזורים</a></li><li class="sub"><ul class="navlist">${REG.map((r,i)=>`<li><a href="#r-${r.id}"><span class="code">2.${i+1}</span>${r.n}</a></li>`).join('')}</ul></li>
+<li class="navgroup">3 · מגזרים</li><li><a href="#sectors"><span class="code">◧</span>מגזרים</a></li><li class="sub"><ul class="navlist"><li><a href="#sec-b"><span class="code">3.1</span>${SEC.b.n}</a></li><li><a href="#sec-p"><span class="code">3.2</span>${SEC.p.n}</a></li></ul></li>
+<li class="navgroup">סיכום</li><li><a href="#summary"><span class="code">Σ</span>סיכום מעשי</a></li><li><a href="#method"><span class="code">§</span>הנחות וסייגים</a></li>`;
+
+const view=document.getElementById('view');
+function route(scroll=true){
+ let h=(location.hash||'#overview').slice(1); if(!V[h]) h='overview';
+ view.innerHTML=V[h]();
+ nav.querySelectorAll('a').forEach(a=>a.getAttribute('href')==='#'+h?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+ hidePop();tip.hidden=true;
+ const r=document.getElementById('aR');if(r){r.addEventListener('input',()=>{r.nextElementSibling.textContent=r.value+'%';});r.addEventListener('change',()=>{add=r.value/100;route(false);document.getElementById('aR').focus();});}
+ if(scroll&&location.hash){view.focus({preventScroll:true});view.scrollIntoView({block:'start'});}
+}
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{const r=e.target.closest('[data-tip]');if(!r){tip.hidden=true;return;}
+ tip.innerHTML=decodeURIComponent(r.dataset.tip);tip.hidden=false;const w=tip.offsetWidth,h=tip.offsetHeight;
+ let x=e.clientX-w-14;if(x<8)x=e.clientX+14;let y=e.clientY+14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=x+'px';tip.style.top=y+'px';});
+const pop=document.getElementById('pop');
+function hidePop(){pop.hidden=true;}
+document.addEventListener('click',e=>{const t=e.target.closest('.term');if(!t){if(!e.target.closest('#pop'))hidePop();return;}
+ e.preventDefault();const [n,d]=G[t.dataset.k];pop.innerHTML=`<b>${n}</b>${d}`;pop.hidden=false;
+ const r=t.getBoundingClientRect(),w=Math.min(320,innerWidth-24);pop.style.maxWidth=w+'px';
+ let x=Math.min(Math.max(12,r.right-w),innerWidth-w-12),y=r.bottom+8;if(y+pop.offsetHeight>innerHeight-12)y=r.top-pop.offsetHeight-8;
+ pop.style.left=x+'px';pop.style.top=Math.max(12,y)+'px';});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){hidePop();tip.hidden=true;}});
+addEventListener('scroll',()=>{hidePop();tip.hidden=true;},{passive:true});
+const tg=document.getElementById('navtoggle');
+tg.addEventListener('click',()=>{const open=nav.classList.toggle('closed')===false;tg.setAttribute('aria-expanded',open);tg.textContent=open?'הסתר את תוכן העניינים':'הצג את תוכן העניינים';});
+nav.addEventListener('click',e=>{if(e.target.closest('a')&&innerWidth<=860){nav.classList.add('closed');tg.setAttribute('aria-expanded','false');tg.textContent='הצג את תוכן העניינים';}});
+document.documentElement.dir='rtl';document.documentElement.lang='he';
+addEventListener('hashchange',()=>route());route();
+</script>
+
+</body></html>
